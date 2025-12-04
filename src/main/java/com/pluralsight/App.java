@@ -104,13 +104,16 @@ public class App {
             //running the query that represents the returned rows
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
 
-                System.out.println("Actors with last name " + lastName + ":");
-
                 //if the results return false, no rows exist
                 if (!resultSet.next()) {
                     System.out.println("No actors found with that last name.");
+                    System.out.println("Press enter to return to main menu");
+                    scanner.nextLine();
                     return;
                 }
+
+                System.out.println("Actors with last name " + lastName + ":");
+
                 do {
 
                     int actorID = resultSet.getInt("actor_id");
@@ -163,13 +166,18 @@ public class App {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
-                System.out.println("\nFilms featuring " + firstName + " " + lastName + ":");
+
 
                 //if statement to check if there are any results
                 if (!resultSet.next()) {
-                    System.out.println("  No films found for that actor.");
+                    System.out.println("No films found for that actor.");
+                    System.out.println("Press enter to return to main menu");
+                    scanner.nextLine();
                     return;
                 }
+
+                System.out.println("\nFilms featuring " + firstName + " " + lastName + ":");
+
                 //use do while loop to print all the matching films
                 do {
                     int filmId = resultSet.getInt("film_id");
